@@ -13,7 +13,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('SchoolDatabase')
 
 student_data = SHEET.worksheet('studentdata')
-
 data = student_data.get_all_values()
 
 def start():
@@ -22,9 +21,11 @@ def start():
     """
     print("""
                 --------MENU--------
-                1. Add new student\n\
-                2. Search student\n\
-                3. Exit
+                1. Add new student
+                2. Search student
+                3. Check Level
+                4. Show all students
+                5. Exit
                     """)
     while True:
         selection = input("Pick a number: \n")
@@ -35,6 +36,12 @@ def start():
             search_student()
             break
         elif selection == '3':
+            display_all_students()
+            break
+        elif selection == '4':
+            check_level()
+            break
+        elif selection == '5':
             exit()
             break
         else:
@@ -43,12 +50,18 @@ def start():
 def add_student():
     print("this is the add student")
 
+
 def search_student():
     print("this is the search student")
 
+def display_all_students():
+    print("This displays everyone")
+
+def check_level():
+    print("This checks level")
+
 def exit():
     print("this is the end")
-
 
 def main():
     start()
