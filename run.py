@@ -1,5 +1,4 @@
 import gspread
-from email.utils import parseaddr
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -39,6 +38,22 @@ def add_new_student():
             student_details.append(nationality)
             break
 
+    while True:
+        age = input("Please enter the student's age: ")
+        validate_numeric_data(age)
+       
+        if validate_numeric_data(age):
+            student_details.append(age)
+            break
+
+    while True:
+        test_results = input("Please enter the student's test results: ")
+        validate_numeric_data(test_results)
+       
+        if validate_numeric_data(test_results):
+            student_details.append(test_results)
+            break
+
     print(student_details)
 
 def validate_data(values):
@@ -46,6 +61,18 @@ def validate_data(values):
         if values.isalpha() == False:
             raise ValueError(
                     "please make sure you only use letters.  Special characters are not allowed "
+                )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+        return False
+    
+    return True
+
+def validate_numeric_data(values):
+    try:
+        if values.isnumeric() == False:
+            raise ValueError(
+                    "please make sure you only use numbers."
                 )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
