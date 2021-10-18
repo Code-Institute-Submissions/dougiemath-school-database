@@ -48,8 +48,27 @@ def start():
             print("Invalid choice, please enter a number 1-3")
 
 def add_student():
-    print("this is the add student")
-
+    print("""You will be asked to input the following data:
+    Family Name, First Name(s), Email Address, Age, Nationality, Course Start/End Date, and Test Results\n""")
+    family_name = input("Please Enter the student's family name: ")
+    first_name = input("Please Enter the student's first name(s): ")
+    email_address = input("Please Enter the student's email: ")
+    student_age = input("Please Enter the student's age: ")
+    student_nationality = input("Please Enter the student's nationality: ")
+    student_course_start = input("Please Enter the student's course start date: ")
+    student_course_end = input("Please Enter the student's course end date: ")
+    student_test_results = input("Please Enter the student's course test results: ")
+    print("You have entered the following details:")
+    print(f"Family name: {family_name}.")
+    print(f"First name(s): {first_name}.")
+    print(f"Email address: {email_address}.")
+    print(f"Age: {student_age}.")
+    print(f"Nationality: {student_nationality}.")
+    print(f"Starting date of course: {student_course_start}.")
+    print(f"End date of course: {student_course_end}.")
+    print(f"Test results {student_test_results}.")
+        
+    confirmation = input("Is the data correct? Y/N")
 
 def search_student():
     print("this is the search student")
@@ -66,5 +85,4 @@ def exit():
 def main():
     start()
 
-main()
-
+add_student()
