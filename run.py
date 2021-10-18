@@ -14,8 +14,14 @@ SHEET = GSPREAD_CLIENT.open('SchoolDatabase')
 STUDENT_DATA = SHEET.worksheet("studentdata")
 
 def add_new_student():
-    family_name = input("Please enter the student's family name: ")
-    validate_data(family_name)
+    while True:
+        family_name = input("Please enter the student's family name: ")
+        validate_data(family_name)
+        
+        if validate_data(family_name):
+            print("Data is valid!")
+            break
+
 
 def validate_data(values):
     print(values)
@@ -26,6 +32,9 @@ def validate_data(values):
                 )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
+        return False
+    
+    return True
 
 
 
