@@ -16,4 +16,42 @@ student_data = SHEET.worksheet('studentdata')
 
 data = student_data.get_all_values()
 
-print(data)
+def start():
+    """
+    Adds a contents menu for users to navigate
+    """
+    print("""
+                --------MENU--------
+                1. Add new student\n\
+                2. Search student\n\
+                3. Exit
+                    """)
+    while True:
+        selection = input("Pick a number: \n")
+        if selection == '1':
+            add_student()
+            break
+        elif selection == '2':
+            search_student()
+            break
+        elif selection == '3':
+            exit()
+            break
+        else:
+            print("Invalid choice, please enter a number 1-3")
+
+def add_student():
+    print("this is the add student")
+
+def search_student():
+    print("this is the search student")
+
+def exit():
+    print("this is the end")
+
+
+def main():
+    start()
+
+main()
+
