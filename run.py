@@ -11,7 +11,7 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('SchoolDatabase')
-STUDENT_DATA = SHEET.worksheet("studentdata")
+
 
 def add_new_student():
     student_details = []
@@ -43,7 +43,7 @@ def add_new_student():
         validate_numeric_data(age)
        
         if validate_numeric_data(age):
-            student_details.append(age)
+            student_details.append(int(age))
             break
 
     while True:
@@ -51,10 +51,11 @@ def add_new_student():
         validate_numeric_data(test_results)
        
         if validate_numeric_data(test_results):
-            student_details.append(test_results)
+            student_details.append(int(test_results))
             break
 
-    print(student_details)
+    SHEET.worksheet('studentdata').append_row(student_details)
+
 
 def validate_data(values):
     try:
