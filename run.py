@@ -72,11 +72,11 @@ def add_student():
             add_student_data.append(family_name)
             add_student_data.append(first_name)
             add_student_data.append(email_address)
-            add_student_data.append(student_age)
+            add_student_data.append(int(student_age))
             add_student_data.append(student_nationality)
             add_student_data.append(student_course_start)
             add_student_data.append(student_course_end)
-            add_student_data.append(student_test_results)
+            add_student_data.append(int(student_test_results))
             print(add_student_data)
             print("accessing sheet")
             student_data = SHEET.worksheet("studentdata")
@@ -84,7 +84,7 @@ def add_student():
             print("sheet updated")
             break
         else:
-            break
+            continue
 
 
 def search_student():
