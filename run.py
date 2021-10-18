@@ -1,4 +1,5 @@
 import gspread
+from email.utils import parseaddr
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -40,6 +41,5 @@ def validate_data(values):
     
     return True
 
-
-
 add_new_student()
+
