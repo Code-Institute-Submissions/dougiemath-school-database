@@ -19,16 +19,20 @@ def add_new_student():
         validate_data(family_name)
         
         if validate_data(family_name):
-            print("Data is valid!")
             break
-
+    while True:
+        first_name = input("Please enter the student's first name: ")
+        validate_data(first_name)
+        
+        if validate_data(first_name):
+            break
+    
 
 def validate_data(values):
-    print(values)
     try:
         if values.isalpha() == False:
             raise ValueError(
-                    "Try again"
+                    "please make sure you only use letters.  Special characters are not allowed "
                 )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
