@@ -56,7 +56,6 @@ def add_new_student():
 
     SHEET.worksheet('studentdata').append_row(student_details)
 
-
 def validate_data(values):
     try:
         if values.isalpha() == False:
@@ -66,7 +65,7 @@ def validate_data(values):
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
         return False
-    
+   
     return True
 
 def validate_numeric_data(values):
