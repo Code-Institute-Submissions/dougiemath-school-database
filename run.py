@@ -59,9 +59,12 @@ def add_new_student():
     while True:
         start_date = input("Please enter the start date: ")
         validate_date(start_date)
+        end_date = input("Please enter the end date: ")
+        validate_date(end_date)
        
-        if validate_date(start_date):
-            student_details.append(int(start_date))
+        if validate_date(start_date) and validate_date(end_date):
+            student_details.append(start_date)
+            student_details.append(end_date)
             break
 
     #add data to google sheet
@@ -100,7 +103,7 @@ def validate_numeric_data(values):
 
 def validate_date(values):
     try:
-        if values.isnumeric() == False:
+        if datetime.datetime.strptime(values, '%Y-%m-%d') == False:
             raise ValueError(
                     "please make sure you only use numbers."
                 )
@@ -108,7 +111,7 @@ def validate_date(values):
         print(f"Invalid data: {e}, please try again.\n")
         return False
     
-    
+
 
     return True
 
