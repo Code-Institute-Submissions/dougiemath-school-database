@@ -55,16 +55,19 @@ def add_new_student():
         if validate_numeric_data(test_results):
             student_details.append(int(test_results))
             break
-
+    
     while True:
-        start_date = input("Please enter date: ")
+        start_date = input("Please enter the start date: ")
         validate_date(start_date)
        
         if validate_date(start_date):
-            student_details.append(start_date)
+            student_details.append(int(start_date))
             break
 
+    #add data to google sheet
     SHEET.worksheet('studentdata').append_row(student_details)
+    
+
 
 """
 Functions for validating user input in
@@ -97,13 +100,15 @@ def validate_numeric_data(values):
 
 def validate_date(values):
     try:
-        if datetime.datetime.strptime(values, '%Y-%m-%d') == False:
+        if values.isnumeric() == False:
             raise ValueError(
-                    "please make sure you only use YYYY-MM-DD"
+                    "please make sure you only use numbers."
                 )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
         return False
+    
+    
 
     return True
 
