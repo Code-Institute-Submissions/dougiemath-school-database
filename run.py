@@ -56,6 +56,12 @@ def add_new_student():
 
     while True:
         test_results = input("Please enter the student's test results: ")
+        if int(test_results) >=30:
+            print("please enter a score from 1-30")
+            continue
+        elif int(test_results) <= 30:
+            pass
+
         validate_numeric_data(test_results)
        
         if validate_numeric_data(test_results):
