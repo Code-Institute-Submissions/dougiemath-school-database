@@ -13,6 +13,7 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('SchoolDatabase')
+STUDENTS = SHEET.worksheet("studentdata")
 
 
 def add_new_student():
@@ -58,8 +59,23 @@ def add_new_student():
         validate_numeric_data(test_results)
        
         if validate_numeric_data(test_results):
-            student_details.append(int(test_results))
-            break
+           student_details.append(int(test_results))
+
+        if int(test_results) >= 1 and int(test_results) <= 5:
+            student_level = "A1"
+        elif int(test_results) >= 6 and int(test_results) <= 10:
+            student_level = "A2"
+        elif int(test_results) >= 11 and int(test_results) <= 15:
+            student_level = "B1"
+        elif int(test_results) >= 16 and int(test_results) <= 23:
+            student_level = "B2"
+        elif int(test_results) >= 23 and int(test_results) <= 28:
+            student_level = "C1"
+        elif int(test_results) >= 29 and int(test_results) <= 30:
+            student_level = "C2"
+
+        student_details.append(student_level)
+        break
     
     while True:
         try:
@@ -80,14 +96,11 @@ def add_new_student():
 
     #add data to google sheet
     SHEET.worksheet('studentdata').append_row(student_details)
-    
-
 
 """
 Functions for validating user input in
 add_new_student()
 """
-
 def validate_data(values):
     try:
         if values.isalpha() == False:
@@ -124,5 +137,26 @@ def validate_date(values):
     
     return True
 
+"""
+function to display values as a dictionary
+"""
+def display_all_students():
+    wks = STUDENTS.get_all_records()
+    if wks:
+        for student in wks:
+            print_all_students(student)
+    else:
+        print("None")
+
+def print_all_students(existing):
+    student = []
+    for key, value in existing.items():
+        print(f'{key}: {value}')
+    print("---")
+    return student
+
+
+
 add_new_student()
+#display_all_students()
 
