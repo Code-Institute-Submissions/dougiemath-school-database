@@ -1,5 +1,6 @@
-import gspread
 import datetime
+import gspread
+
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -15,6 +16,10 @@ SHEET = GSPREAD_CLIENT.open('SchoolDatabase')
 
 
 def add_new_student():
+    """
+    Function to add new student by name, age
+    test results, and course dates
+    """
     student_details = []
     while True:
         family_name = input("Please enter the student's family name: ")
