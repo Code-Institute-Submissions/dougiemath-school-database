@@ -1,4 +1,5 @@
 import gspread
+import datetime
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -22,6 +23,7 @@ def add_new_student():
         if validate_data(family_name):
             student_details.append(family_name)
             break
+
     while True:
         first_name = input("Please enter the student's first name: ")
         validate_data(first_name)
@@ -54,7 +56,20 @@ def add_new_student():
             student_details.append(int(test_results))
             break
 
+    while True:
+        start_date = input("Please enter date: ")
+        validate_date(start_date)
+       
+        if validate_date(start_date):
+            student_details.append(start_date)
+            break
+
     SHEET.worksheet('studentdata').append_row(student_details)
+
+"""
+Functions for validating user input in
+add_new_student()
+"""
 
 def validate_data(values):
     try:
@@ -78,6 +93,18 @@ def validate_numeric_data(values):
         print(f"Invalid data: {e}, please try again.\n")
         return False
     
+    return True
+
+def validate_date(values):
+    try:
+        if datetime.datetime.strptime(values, '%Y-%m-%d') == False:
+            raise ValueError(
+                    "please make sure you only use YYYY-MM-DD"
+                )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+        return False
+
     return True
 
 add_new_student()
