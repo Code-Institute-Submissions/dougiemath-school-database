@@ -90,7 +90,7 @@ def add_new_student():
         test_results = input("Please enter the student's test results: ")
         validate_numeric_data(test_results)
 
-        if int(test_results) >=30:
+        if int(test_results) >30:
             print("please enter a score from 1-30")
             continue
         
@@ -141,6 +141,13 @@ def add_new_student():
 
     # function for confirming student to be added
     while True:
+
+        headings = STUDENTS.row_values(1) 
+        summary = dict(zip(headings, student_details))
+        print("------")
+        for x, y in summary.items():
+            print(x, ": ", y)
+        print("------")
         
         confirmation = input("Do you wish to add this student to the database? (Y/N) ")
     
@@ -326,8 +333,8 @@ def exit():
     quit()
 
 
-add_new_student()
+#add_new_student()
 #display_all_students()
 #search_for_student()
-#main()
+main()
 
