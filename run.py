@@ -126,7 +126,7 @@ def add_new_student():
                 print("Good1")
                 add_new_student()
             elif next_step == "N" or next_step == "n":
-                print("oh....1")
+                exit()
         else:
             print("Please enter 'Y' or 'N'")
 
@@ -210,6 +210,11 @@ def search_for_student():
         for x, y in search_results.items():
             print(x, ": ", y)
         print("------")
+
+def exit():
+    print("bye bye")
+    quit()
+    
 
 add_new_student()
 #display_all_students()
