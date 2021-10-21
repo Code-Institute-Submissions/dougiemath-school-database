@@ -151,7 +151,22 @@ def add_new_student():
         confirmation = input("Do you wish to add this student to the database? (Y/N) ")
     
         if confirmation == "Y" or confirmation == "y":
-            print("Good")
+            print("Accessing database..........")
+            print("Updating database..........")
+            SHEET.worksheet('studentdata').append_row(student_details)
+            print("..........")
+            print("Student added succesfully!")
+            next_step = input("Do you want to add a new student? (Y/N) ")
+            if next_step == "Y" or next_step == "y":
+                print("..........")
+                print("Restarting add new student")
+                print("..........")
+                add_new_student()
+            elif next_step == "N" or next_step == "n":
+                print("..........")
+                print("Returning to main menu")
+                print("..........")
+                main()
         elif confirmation == "N" or confirmation == "n":
             print("oh....")
             next_step = input("Do you want to add a new student? (Y/N) ")
