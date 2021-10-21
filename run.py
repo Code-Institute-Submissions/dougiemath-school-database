@@ -15,6 +15,37 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('SchoolDatabase')
 STUDENTS = SHEET.worksheet("studentdata")
 
+def main():
+    while  True:
+        
+        print("""
+                    --------MENU--------
+                    1. Add new student\n\
+                    2. Search for student\n\
+                    3. Display all students\n\
+                    4. Delete student\n\
+                    5. Reset database\n\
+                    6. Exit\n
+                        """)
+        user_input = int(input("Please from 1 - 6: "))
+        if user_input == 1:
+            add_new_student()
+        elif user_input == 2:
+            search_for_student()
+        elif user_input == 3:
+            display_all_students()
+        #elif user_input == 4:
+            search_for_student()
+        #elif user_input == 5:
+            search_for_student()
+        elif user_input == 6:
+            exit()
+        else:
+            print("Invalid choice")
+            print("Please enter a number from 1-6.")
+            pass
+    
+
 
 def add_new_student():
     """
@@ -22,6 +53,7 @@ def add_new_student():
     test results, and course dates
     """
     student_details = []
+    # function for adding student's surname
     while True:
         family_name = input("Please enter the student's family name: ")
         validate_data(family_name)
@@ -29,7 +61,7 @@ def add_new_student():
         if validate_data(family_name):
             student_details.append(family_name)
             break
-
+    # function for adding student's first name
     while True:
         first_name = input("Please enter the student's first name: ")
         validate_data(first_name)
@@ -37,7 +69,7 @@ def add_new_student():
         if validate_data(first_name):
             student_details.append(first_name)
             break
-    
+    # function for adding student's nationality
     while True:
         nationality = input("Please enter the student's nationality: ")
         validate_data(nationality)
@@ -45,7 +77,7 @@ def add_new_student():
         if validate_data(nationality):
             student_details.append(nationality)
             break
-
+    # function for adding student's age
     while True:
         age = input("Please enter the student's age: ")
         validate_numeric_data(age)
@@ -53,7 +85,7 @@ def add_new_student():
         if validate_numeric_data(age):
             student_details.append(int(age))
             break
-
+    # function for adding student's test results
     while True:
         test_results = input("Please enter the student's test results: ")
         validate_numeric_data(test_results)
@@ -65,7 +97,7 @@ def add_new_student():
         if validate_numeric_data(test_results):
             student_details.append(int(test_results))
             break
-
+    # function for adding a level to student's test results
     while True:
         if int(test_results) >= 1 and int(test_results) <= 5:
             student_level = "A1"
@@ -82,7 +114,7 @@ def add_new_student():
 
         student_details.append(student_level)
         break
-    
+    # function for adding student's start and end dates
     while True:
         try:
             start_date = input("Please enter the start date: ")
@@ -113,6 +145,7 @@ def add_new_student():
         print(f"{x}: {y}")
     print("-----------")
 
+    # function for confirming student to be added
     while True:
         
         confirmation = input("Do you wish to add this student to the database? (Y/N) ")
@@ -178,7 +211,7 @@ def validate_date(values):
     return True
 
 """
-function to display values as a list
+function to display all students in a list
 """
 def display_all_students():
     wks = STUDENTS.get_all_records()
@@ -195,14 +228,15 @@ def print_all_students(existing):
         print(f'{key}: {value}')
     print("---")
     return student
+
 """
-function to search by surname
+function to search by student's ID number
 """
 def search_for_student():
-    username = input('Family name: ')
-    test = STUDENTS.col_values(2)
-    if username in test:
-        rownum = test.index(username) + 1
+    number = input('Please enter the Student ID number: ')
+    test = STUDENTS.col_values(9)
+    if number in test:
+        rownum = test.index(number) + 1
         row = STUDENTS.row_values(rownum)
         headings = STUDENTS.row_values(1) 
         search_results = dict(zip(headings, row))
@@ -210,14 +244,18 @@ def search_for_student():
         for x, y in search_results.items():
             print(x, ": ", y)
         print("------")
-
+    
+"""
+function to exit the program
+"""
 def exit():
     print("bye bye")
     quit()
-    
 
-add_new_student()
+
+#add_new_student()
 #display_all_students()
 #search_for_student()
+main()
 
 
