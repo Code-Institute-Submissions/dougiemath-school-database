@@ -171,7 +171,9 @@ def add_new_student():
             print("oh....")
             next_step = input("Do you want to add a new student? (Y/N) ")
             if next_step == "Y" or next_step == "y":
-                print("Good1")
+                print("..........")
+                print("Restarting add new student")
+                print("..........")
                 add_new_student()
             elif next_step == "N" or next_step == "n":
                 exit()
@@ -248,23 +250,41 @@ def print_all_students(existing):
 function to search by student's ID number
 """
 def search_for_student():
-    number = input('Please enter the Student ID number: ')
-    test = STUDENTS.col_values(9)
-    if number in test:
-        rownum = test.index(number) + 1
-        row = STUDENTS.row_values(rownum)
-        headings = STUDENTS.row_values(1) 
-        search_results = dict(zip(headings, row))
-        print("------")
-        for x, y in search_results.items():
-            print(x, ": ", y)
-        print("------")
+    while True:
+        number = input('Please enter the Student ID number: ')
+        test = STUDENTS.col_values(9)
+        if number in test:
+            rownum = test.index(number) + 1
+            row = STUDENTS.row_values(rownum)
+            headings = STUDENTS.row_values(1) 
+            search_results = dict(zip(headings, row))
+            print("------")
+            for x, y in search_results.items():
+                print(x, ": ", y)
+            print("------")
+        elif int(number) == 0:
+            main()
+        else:
+            print("Invalid input.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
+
+    search_again = input("Would you like to search for another student? (Y/N) ")
+    if search_again == "Y" or search_again == "y":
+        print("..........")
+        print("Restarting add new student")
+        print("..........")
+        search_for_student()
+    elif search_again == "N" or search_again == "n":
+        print("..........")
+        print("Returning to main menu")
+        print("..........")
+        main()
     
 """
 function to exit the program
 """
 def exit():
-    print("bye bye")
+    print("....THANK YOU FOR USING THIS PROGRAM....")
+    print("...........HAVE A LOVELY DAY............")
     quit()
 
 
