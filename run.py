@@ -34,8 +34,8 @@ def main():
             search_for_student()
         elif user_input == 3:
             display_all_students()
-        #elif user_input == 4:
-            search_for_student()
+        elif user_input == 4:
+            delete_student()
         #elif user_input == 5:
             search_for_student()
         elif user_input == 6:
@@ -133,17 +133,11 @@ def add_new_student():
             pass
 
     #generates student number
-    max_rows = len(STUDENTS.get_all_values()) 
-    print(max_rows)
-    student_number = int(max_rows) + 1
-    student_details.append(student_number)
-
-    headings = STUDENTS.row_values(1) 
-    summary = dict(zip(headings, student_details))
-    print("-----------")
-    for x, y in summary.items():
-        print(f"{x}: {y}")
-    print("-----------")
+    studentIds = STUDENTS.col_values(9)[1:]
+    results = [int(i) for i in studentIds]
+    maxId = max(results)
+    student_id = int(maxId) + 1
+    student_details.append(student_id)
 
     # function for confirming student to be added
     while True:
@@ -156,7 +150,7 @@ def add_new_student():
             SHEET.worksheet('studentdata').append_row(student_details)
             print("..........")
             print("Student added succesfully!")
-            next_step = input("Do you want to add a new student? (Y/N) ")
+            next_step = input("Do you want to add another new student? (Y/N) ")
             if next_step == "Y" or next_step == "y":
                 print("..........")
                 print("Restarting add new student")
@@ -169,7 +163,7 @@ def add_new_student():
                 main()
         elif confirmation == "N" or confirmation == "n":
             print("oh....")
-            next_step = input("Do you want to add a new student? (Y/N) ")
+            next_step = input("Do you want to add another new student? (Y/N) ")
             if next_step == "Y" or next_step == "y":
                 print("..........")
                 print("Restarting add new student")
@@ -245,6 +239,7 @@ def print_all_students(existing):
         print(f'{key}: {value}')
     print("---")
     return student
+    main()
 
 """
 function to search by student's ID number
@@ -278,7 +273,50 @@ def search_for_student():
         print("Returning to main menu")
         print("..........")
         main()
-    
+
+"""
+function to delte a single student from the spreadsheet
+"""
+def delete_student():
+    while True:
+        number = input("Please enter the Student ID number.\nEnter '0' to return to the main menu. ")
+        test = STUDENTS.col_values(9)
+        if number in test:
+            rownum = test.index(number) + 1
+            row = STUDENTS.row_values(rownum)
+            headings = STUDENTS.row_values(1) 
+            search_results = dict(zip(headings, row))
+            print("------")
+            for x, y in search_results.items():
+                print(x, ": ", y)
+            print("------")
+        elif int(number) == 0:
+            main()
+        else:
+            print("Invalid input.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
+        
+        confirmation = input("Are you sure you want to delete this student? (Y/N)\nThis action cannot be undone. ")
+        if confirmation == "Y" or confirmation == "y":
+            print("..........")
+            print("Removing student from database")
+            print("..........")
+            STUDENTS.delete_rows(rownum)
+            next_step = input("Do you want to remove another student? (Y/N) ")
+            if next_step == "Y" or next_step == "y":
+                print("..........")
+                print("Restarting remove student")
+                print("..........")
+                delete_student()
+            elif next_step == "N" or next_step == "n":
+                print("..........")
+                print("Returning to main menu")
+                print("..........")
+                main()
+        elif confirmation == "N" or confirmation == "n":
+            print("..........")
+            print("Returning to main menu")
+            print("..........")
+            main()
 """
 function to exit the program
 """
@@ -288,9 +326,8 @@ def exit():
     quit()
 
 
-#add_new_student()
+add_new_student()
 #display_all_students()
 #search_for_student()
-main()
-
+#main()
 
