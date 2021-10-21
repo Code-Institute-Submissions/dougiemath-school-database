@@ -99,9 +99,17 @@ def add_new_student():
                
         except Exception:
             pass
+
+    #generates student number
+    max_rows = len(STUDENTS.get_all_values()) 
+    print(max_rows)
+    student_number = int(max_rows) + 1
+    print(student_number)
     print(student_details)
+
+    student_details.append(student_number)
     #add data to google sheet
-    #SHEET.worksheet('studentdata').append_row(student_details)
+    SHEET.worksheet('studentdata').append_row(student_details)
 
 
 
@@ -163,9 +171,9 @@ def print_all_students(existing):
         print(f'{key}: {value}')
     print("---")
     return student
-""""
+"""
 function to search by surname
-""""
+"""
 def search_for_student():
     username = input('Family name: ')
     test = STUDENTS.col_values(2)
@@ -182,3 +190,5 @@ def search_for_student():
 add_new_student()
 #display_all_students()
 #search_for_student()
+
+
