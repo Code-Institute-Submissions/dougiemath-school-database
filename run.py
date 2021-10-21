@@ -104,12 +104,36 @@ def add_new_student():
     max_rows = len(STUDENTS.get_all_values()) 
     print(max_rows)
     student_number = int(max_rows) + 1
-    print(student_number)
-    print(student_details)
-
     student_details.append(student_number)
+
+    headings = STUDENTS.row_values(1) 
+    summary = dict(zip(headings, student_details))
+    print("-----------")
+    for x, y in summary.items():
+        print(f"{x}: {y}")
+    print("-----------")
+
+    while True:
+        
+        confirmation = input("Do you wish to add this student to the database? (Y/N) ")
+    
+        if confirmation == "Y" or confirmation == "y":
+            print("Good")
+        elif confirmation == "N" or confirmation == "n":
+            print("oh....")
+            next_step = input("Do you want to add a new student? (Y/N) ")
+            if next_step == "Y" or next_step == "y":
+                print("Good1")
+                add_new_student()
+            elif next_step == "N" or next_step == "n":
+                print("oh....1")
+        else:
+            print("Please enter 'Y' or 'N'")
+
+
+
     #add data to google sheet
-    SHEET.worksheet('studentdata').append_row(student_details)
+    #SHEET.worksheet('studentdata').append_row(student_details)
 
 
 
