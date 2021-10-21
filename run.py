@@ -56,17 +56,17 @@ def add_new_student():
 
     while True:
         test_results = input("Please enter the student's test results: ")
+        validate_numeric_data(test_results)
+
         if int(test_results) >=30:
             print("please enter a score from 1-30")
             continue
-        elif int(test_results) <= 30:
-            pass
-
-        validate_numeric_data(test_results)
-       
+        
         if validate_numeric_data(test_results):
-           student_details.append(int(test_results))
+            student_details.append(int(test_results))
+            break
 
+    while True:
         if int(test_results) >= 1 and int(test_results) <= 5:
             student_level = "A1"
         elif int(test_results) >= 6 and int(test_results) <= 10:
@@ -99,9 +99,9 @@ def add_new_student():
                
         except Exception:
             pass
-
+    print(student_details)
     #add data to google sheet
-    SHEET.worksheet('studentdata').append_row(student_details)
+    #SHEET.worksheet('studentdata').append_row(student_details)
 
 
 
@@ -158,16 +158,18 @@ def display_all_students():
 
 def print_all_students(existing):
     student = []
+    print("---")
     for key, value in existing.items():
         print(f'{key}: {value}')
     print("---")
     return student
-
+""""
+function to search by surname
+""""
 def search_for_student():
-    username = input('Username: ')
-    test = STUDENTS.col_values(1)
+    username = input('Family name: ')
+    test = STUDENTS.col_values(2)
     if username in test:
-        test = STUDENTS.col_values(1)
         rownum = test.index(username) + 1
         row = STUDENTS.row_values(rownum)
         headings = STUDENTS.row_values(1) 
@@ -177,11 +179,6 @@ def search_for_student():
             print(x, ": ", y)
         print("------")
 
-
-
-
-
-
-#add_new_student()
+add_new_student()
 #display_all_students()
-search_for_student()
+#search_for_student()
