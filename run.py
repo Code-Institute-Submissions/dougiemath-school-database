@@ -103,6 +103,8 @@ def add_new_student():
     #add data to google sheet
     SHEET.worksheet('studentdata').append_row(student_details)
 
+
+
 """
 Functions for validating user input in
 add_new_student()
@@ -144,7 +146,7 @@ def validate_date(values):
     return True
 
 """
-function to display values as a dictionary
+function to display values as a list
 """
 def display_all_students():
     wks = STUDENTS.get_all_records()
@@ -161,8 +163,25 @@ def print_all_students(existing):
     print("---")
     return student
 
+def search_for_student():
+    username = input('Username: ')
+    test = STUDENTS.col_values(1)
+    if username in test:
+        test = STUDENTS.col_values(1)
+        rownum = test.index(username) + 1
+        row = STUDENTS.row_values(rownum)
+        headings = STUDENTS.row_values(1) 
+        search_results = dict(zip(headings, row))
+        print("------")
+        for x, y in search_results.items():
+            print(x, ": ", y)
+        print("------")
 
 
-add_new_student()
+
+
+
+
+#add_new_student()
 #display_all_students()
-
+search_for_student()
