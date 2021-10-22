@@ -28,18 +28,18 @@ def main():
                     5. Reset database\n\
                     6. Exit\n
                         """)
-        user_input = int(input("Please from 1 - 6: "))
-        if user_input == 1:
+        user_input = input("Please from 1 - 6: ")
+        if user_input == "1":
             add_new_student()
-        elif user_input == 2:
+        elif user_input == "2":
             search_for_student()
-        elif user_input == 3:
+        elif user_input == "3":
             display_all_students()
-        elif user_input == 4:
+        elif user_input == "4":
             delete_student()
-        elif user_input == 5:
+        elif user_input == "5":
             remove_all_students()
-        elif user_input == 6:
+        elif user_input == "6":
             exit()
         else:
             print("Invalid choice")
@@ -88,7 +88,7 @@ def add_new_student():
             break
     # function for adding student's test results
     while True:
-        test_results = input("Please enter the student's test results: ")
+        test_results = input("Please enter the student's test results (1-30): ")
         validate_numeric_data(test_results)
 
         if int(test_results) >30:
