@@ -265,15 +265,10 @@ def search_for_student():
             for x, y in search_results.items():
                 print(x, ": ", y)
             print("------")
-        elif number not in test:
-            print("")
-            print("There is no student on file with that student ID number.\nPlease try again.")
-            print("")
-            search_for_student()
+        elif number == "0":
+            main()
         elif number.isalpha():
             print("Invalid input.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
-        elif int(number) == 0:
-            main()
         else:
             print("Invalid input.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
 
