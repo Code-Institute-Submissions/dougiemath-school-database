@@ -16,8 +16,9 @@ SHEET = GSPREAD_CLIENT.open('SchoolDatabase')
 STUDENTS = SHEET.worksheet("studentdata")
 
 def main():
-    while  True:
-        
+    while True:
+        print("")
+        print("What would you like to do?")
         print("""
                     --------MENU--------
                     1. Add new student\n\
@@ -36,8 +37,8 @@ def main():
             display_all_students()
         elif user_input == 4:
             delete_student()
-        #elif user_input == 5:
-            search_for_student()
+        elif user_input == 5:
+            remove_all_students()
         elif user_input == 6:
             exit()
         else:
@@ -180,12 +181,6 @@ def add_new_student():
                 exit()
         else:
             print("Please enter 'Y' or 'N'")
-
-
-
-    #add data to google sheet
-    #SHEET.worksheet('studentdata').append_row(student_details)
-
 
 
 """
@@ -332,6 +327,30 @@ def exit():
     print("...........HAVE A LOVELY DAY............")
     quit()
 
+
+"""
+Function to clear database of all students
+"""
+def remove_all_students():
+    confirmation = input("Are you sure you want to clear the database?\nThis action cannot be undone. (Y/N) ")
+    if confirmation == "Y" or confirmation == "y":
+        STUDENTS.clear()
+        headings = ("Family Name","First Name","Nationality","Age","Test Results","Level","Start Date","End Date","Student Number")
+        STUDENTS.append_row(headings)
+        print("..........")
+        print("Accessing database")
+        print("..........")
+        print("Removing students from database")
+        print("..........")
+        print("All students have been removed from the database")
+        print("..........")
+        print("Returning to main menu")
+        print("..........")
+    elif confirmation == "N" or confirmation == "n":
+        print("..........")
+        print("Returning to main menu")
+        print("..........")
+        main()
 
 #add_new_student()
 #display_all_students()
