@@ -318,6 +318,7 @@ def delete_student():
                     print(x, ": ", y)
                 print("------")
                 confirm_student_removal()
+                STUDENTS.delete_rows(rownum)
             elif number.isalpha():
                 print("Invalid input.  Please enter a valid student number.\nEnter '0' to return to the main menu. ")
             elif int(number) == 0:
@@ -338,8 +339,6 @@ def confirm_student_removal():
         print("")
         print("Removing student from database")
         print("")
-        print()
-        #STUDENTS.delete_rows(rownum)
         print("Student has been removed from database")
         print("")
     elif confirmation == "N" or confirmation == "n":
