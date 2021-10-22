@@ -16,6 +16,9 @@ SHEET = GSPREAD_CLIENT.open('SchoolDatabase')
 STUDENTS = SHEET.worksheet("studentdata")
 
 def main():
+    """
+    Function to display main menu
+    """
     while True:
         print("")
         print("What would you like to do?")
@@ -175,6 +178,10 @@ def add_new_student():
             print("Please enter 'Y' or 'N'")
 
 def add_another_student():
+    """
+    Function give user the option of adding another student without
+    exiting to the main menu
+    """
     while True:
         next_step = input("Do you want to add another new student? (Y/N) ")
         if next_step == "Y" or next_step == "y":
@@ -189,11 +196,11 @@ def add_another_student():
             main()
         else:
             print("Please enter 'Y' or 'N'")
-"""
-Functions for validating user input in
-add_new_student()
-"""
+
 def validate_data(values):
+    """
+    Function to validate that the input data is letters
+    """
     try:
         if values.isalpha() == False:
             raise ValueError(
@@ -206,6 +213,9 @@ def validate_data(values):
     return True
 
 def validate_numeric_data(values):
+    """
+    Function to validate that the input data is numeric
+    """
     try:
         if values.isnumeric() == False:
             raise ValueError(
@@ -218,6 +228,9 @@ def validate_numeric_data(values):
     return True
 
 def validate_date(values):
+    """
+    Function to validate the date format as DD-MM-YYY
+    """
     try:
         if datetime.datetime.strptime(values, '%d-%m-%Y') == False:
             raise ValueError(
@@ -229,10 +242,10 @@ def validate_date(values):
     
     return True
 
-"""
-function to display all students in a list
-"""
 def display_all_students():
+    """
+    Function to add all students to a list
+    """
     wks = STUDENTS.get_all_records()
     if wks:
         for student in wks:
@@ -241,6 +254,9 @@ def display_all_students():
         print("None")
 
 def print_all_students(existing):
+    """
+    Function to display all students in a list
+    """
     student = []
     print("---")
     for key, value in existing.items():
@@ -249,10 +265,10 @@ def print_all_students(existing):
     return student
     main()
 
-"""
-function to search by student's ID number
-"""
 def search_for_student():
+    """
+    Function to search by student's ID number
+    """
     while True:
         number = input('Please enter the Student ID number \n(or input 0 to return to the main menu): ')
         test = STUDENTS.col_values(9)
@@ -284,10 +300,10 @@ def search_for_student():
         print("")
         main()
 
-"""
-function to delte a single student from the spreadsheet
-"""
 def delete_student():
+    """
+    function to delete a single student from the spreadsheet
+    """
     while True:
         try:
             number = input("Please enter the Student ID number.\nEnter '0' to return to the main menu. ")
@@ -312,6 +328,10 @@ def delete_student():
             pass
 
 def confirm_student_removal():
+    """
+    Function to confirm the removal of student to ensure
+    the user has not made a mistake
+    """
     confirmation = input("Are you sure you want to delete this student? (Y/N)\nThis action cannot be undone. ")
     if confirmation == "Y" or confirmation == "y":
         print("")
@@ -331,19 +351,21 @@ def confirm_student_removal():
         print("")
         confirm_student_removal()
 
-"""
-function to exit the program
-"""
 def exit():
-    print("....THANK YOU FOR USING THIS PROGRAM....")
-    print("...........HAVE A LOVELY DAY............")
+    """
+    Function to exit the program
+    """
+    print("""
+                THANK YOU FOR USING THIS PROGRAM
+                        HAVE A NICE DAY
+                            
+                        """)
     quit()
 
-
-"""
-Function to clear database of all students
-"""
 def remove_all_students():
+    """
+    Function to clear database of all students
+    """
     while True:
         confirmation = input("Are you sure you want to clear the database?\nThis action cannot be undone. (Y/N) ")
         if confirmation == "Y" or confirmation == "y":
@@ -369,8 +391,5 @@ def remove_all_students():
             print("Invlaid Input.  Please choose Y or N")
             print("")
 
-#add_new_student()
-#display_all_students()
-#search_for_student()
 main()
 
