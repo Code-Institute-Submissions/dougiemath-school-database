@@ -118,9 +118,9 @@ def add_new_student():
     # function for adding student's start and end dates
     while True:
         try:
-            start_date = input("Please enter the start date: ")
+            start_date = input("Please enter the start date (use only DD-MM-YYYY): ")
             validate_date(start_date)
-            end_date = input("Please enter the end date: ")
+            end_date = input("Please enter the end date (use only DD-MM-YYYY): ")
             validate_date(end_date) 
         
             if validate_date(start_date) and validate_date(end_date) and end_date > start_date:
@@ -150,7 +150,7 @@ def add_new_student():
             print(x, ": ", y)
         print("------")
         
-        confirmation = input("Do you wish to add this student to the database? (Y/N) ")
+        confirmation = input("Please confirm that you wish to add this student to the database? (Y/N) ")
     
         if confirmation == "Y" or confirmation == "y":
             print("Accessing database..........")
@@ -158,17 +158,9 @@ def add_new_student():
             SHEET.worksheet('studentdata').append_row(student_details)
             print("..........")
             print("Student added succesfully!")
-            next_step = input("Do you want to add another new student? (Y/N) ")
-            if next_step == "Y" or next_step == "y":
-                print("..........")
-                print("Restarting add new student")
-                print("..........")
-                add_new_student()
-            elif next_step == "N" or next_step == "n":
-                print("..........")
-                print("Returning to main menu")
-                print("..........")
-                main()
+            
+            add_another_student()
+        
         elif confirmation == "N" or confirmation == "n":
             print("oh....")
             next_step = input("Do you want to add another new student? (Y/N) ")
@@ -178,11 +170,25 @@ def add_new_student():
                 print("..........")
                 add_new_student()
             elif next_step == "N" or next_step == "n":
-                exit()
+                main()
         else:
             print("Please enter 'Y' or 'N'")
 
-
+def add_another_student():
+    while True:
+        next_step = input("Do you want to add another new student? (Y/N) ")
+        if next_step == "Y" or next_step == "y":
+            print("..........")
+            print("Restarting add new student")
+            print("..........")
+            add_new_student()
+        elif next_step == "N" or next_step == "n":
+            print("..........")
+            print("Returning to main menu")
+            print("..........")
+            main()
+        else:
+            print("Please enter 'Y' or 'N'")
 """
 Functions for validating user input in
 add_new_student()
@@ -311,7 +317,7 @@ def confirm_student_removal():
         print("")
         print("Removing student from database")
         print("")
-        #STUDENTS.delete_rows(rownum)
+        STUDENTS.delete_rows(rownum)
         print("Student has been removed from database")
         print("")
     elif confirmation == "N" or confirmation == "n":
