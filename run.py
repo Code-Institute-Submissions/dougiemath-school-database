@@ -43,7 +43,7 @@ def main():
         elif user_input == "5":
             remove_all_students()
         elif user_input == "6":
-            exit()
+            exit_program()
         else:
             print("Invalid choice")
             print("Please enter a number from 1-6.")
@@ -352,7 +352,7 @@ def confirm_student_removal():
         print("")
         confirm_student_removal()
 
-def exit():
+def exit_program():
     """
     Function to exit the program
     """
@@ -361,7 +361,7 @@ def exit():
                         HAVE A NICE DAY
                             
                         """)
-    quit()
+    exit()
 
 def remove_all_students():
     """
