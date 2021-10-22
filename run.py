@@ -317,13 +317,14 @@ def delete_student():
                 for x, y in search_results.items():
                     print(x, ": ", y)
                 print("------")
+                confirm_student_removal()
             elif number.isalpha():
                 print("Invalid input.  Please enter a valid student number.\nEnter '0' to return to the main menu. ")
             elif int(number) == 0:
                 main()
             else:
                 print("Invalid input.  Please enter a valid student number.\nEnter '0' to return to the main menu. ")
-            confirm_student_removal()
+            
         except Exception():
             pass
 
@@ -337,7 +338,8 @@ def confirm_student_removal():
         print("")
         print("Removing student from database")
         print("")
-        STUDENTS.delete_rows(rownum)
+        print()
+        #STUDENTS.delete_rows(rownum)
         print("Student has been removed from database")
         print("")
     elif confirmation == "N" or confirmation == "n":
