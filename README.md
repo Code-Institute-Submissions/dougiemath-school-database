@@ -12,7 +12,18 @@ As a first time user, I want:
 As a returning/frequent user, I want:
 * to be able to find/remove students quickly
 
-### Site Owner Goals
+### Site Owner's Goals
+As the owner of this program, I wanted to:
+* create a program that is simple to follow
+* create a program that allows users to store data on a Google Sheet by using the Google Drive and Google Sheets APIs
+* add students individually
+* use logic to calculate the student's level
+* automatically generate a unique student number for each new student
+* create a search function to display single students
+* display every student stored on the spreadsheet
+* remove individual students
+* remove all students
+
 ### Structure
 
 ## Features
