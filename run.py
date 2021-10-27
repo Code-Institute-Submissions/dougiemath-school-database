@@ -88,15 +88,12 @@ def add_new_student():
     # function for adding student's test results
     while True:
         test_results = input("Please enter the student's test results (1-30): ")
-        validate_numeric_data(test_results)
         
-        if int(test_results) >30:
-            print("please enter a score from 1-30")
-            continue
-        
-        if validate_numeric_data(test_results):
+        if validate_numeric_data(test_results) and int(test_results) <= 30 and int(test_results) > 0:
             student_details.append(int(test_results))
             break
+        else:
+            pass
     # function for adding a level to student's test results
     while True:
         if int(test_results) >= 1 and int(test_results) <= 5:
