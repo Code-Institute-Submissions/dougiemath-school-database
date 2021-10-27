@@ -267,11 +267,10 @@ def search_for_student():
             print("------")
         elif number == "0":
             main()
-        elif number.isalpha():
-            display_message("Invalid input.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
         else:
-            display_message("There is currently no student with that number.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
-
+            display_message("There is currently no student with that number.  Please enter a valid student number.\n Please type '0' to return to the main menu.")
+            pass
+        
         search_again = input("Would you like to search for another student? (Y/N) ")
         if search_again.upper() == "Y":
             display_message("Restarting Student Search")
