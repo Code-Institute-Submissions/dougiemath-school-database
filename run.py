@@ -202,8 +202,10 @@ def validate_numeric_data(values):
     try:
         if values.isnumeric() == False:
             raise ValueError()
+        elif values == "0":
+            raise ValueError()
     except ValueError as e:
-        display_message("Please enter a number.  \nSpecial characters and letters are not allowed.")
+        display_message("Please enter a number greater than 0.  \nSpecial characters and letters are not allowed.")
         return False
     
     return True
