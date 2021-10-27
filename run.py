@@ -130,13 +130,13 @@ def add_new_student():
                 student_details.append(start_date)
                 student_details.append(end_date)
                 break
-            else:
-               print("Nope")
+            #else:
+            #   print("Nope")
                
         except Exception:
             pass
 
-    #generates student number
+    # generates student number
     studentIds = STUDENTS.col_values(9)[1:]
     results = [int(i) for i in studentIds]
     maxId = max(results)
@@ -207,7 +207,11 @@ def validate_data(values):
                     "please make sure you only use letters.  Special characters are not allowed "
                 )
     except ValueError as e:
+        print("------")
+        print("")
         print(f"Invalid data: {e}, please try again.\n")
+        print("")
+        print("------")
         return False
    
     return True
@@ -219,17 +223,21 @@ def validate_numeric_data(values):
     try:
         if values.isnumeric() == False:
             raise ValueError(
-                    "please make sure you only use numbers."
+                    "please make sure you only use numbers"
                 )
     except ValueError as e:
+        print("------")
+        print("")
         print(f"Invalid data: {e}, please try again.\n")
+        print("")
+        print("------")
         return False
     
     return True
 
 def validate_date(values):
     """
-    Function to validate the date format as DD-MM-YYY
+    Function to validate the date format as DD-MM-YYYY
     """
     try:
         if datetime.datetime.strptime(values, '%d-%m-%Y') == False:
@@ -237,7 +245,11 @@ def validate_date(values):
                     "please make sure you only use numbers."
                 )
     except ValueError as e:
+        print("------")
+        print("")
         print(f"Invalid data: {e}, please try again.\n")
+        print("")
+        print("------")
         return False
     
     return True
@@ -283,10 +295,18 @@ def search_for_student():
             print("------")
         elif number == "0":
             main()
-        elif number.isalpha():
+        elif number.isalpha():#
+            print("------")
+            print("")
             print("Invalid input.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
+            print("")
+            print("------")
         else:
+            print("------")
+            print("")
             print("Invalid input.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
+            print("")
+            print("------")
 
     search_again = input("Would you like to search for another student? (Y/N) ")
     if search_again == "Y" or search_again == "y":
@@ -336,15 +356,21 @@ def confirm_student_removal():
     """
     confirmation = input("Are you sure you want to delete this student? (Y/N)\nThis action cannot be undone. ")
     if confirmation == "Y" or confirmation == "y":
+        print("------")
         print("")
         print("Removing student from database")
         print("")
+        print("------")
+        print("")
         print("Student has been removed from database")
         print("")
+        print("------")
     elif confirmation == "N" or confirmation == "n":
+        print("------")
         print("")
         print("Returning to main menu")
         print("")
+        print("------")
         main()
     else:
         print("")
