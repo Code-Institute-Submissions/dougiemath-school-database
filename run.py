@@ -147,7 +147,7 @@ def add_new_student():
         
         confirmation = input("Please confirm that you wish to add this student to the database? (Y/N) ")
     
-        if confirmation == "Y" or confirmation == "y":
+        if confirmation.upper() == "Y":
             display_message("Accessing database..........")
             display_message("Updating database..........")
             SHEET.worksheet('studentdata').append_row(student_details)
@@ -155,12 +155,12 @@ def add_new_student():
             
             add_another_student()
         
-        elif confirmation == "N" or confirmation == "n":
+        elif confirmation.upper() == "N":
             next_step = input("Do you want to add another new student? (Y/N) ")
-            if next_step == "Y" or next_step == "y":
+            if next_step.upper() == "Y":
                 display_message("Restarting add new student")
                 add_new_student()
-            elif next_step == "N" or next_step == "n":
+            elif next_step.upper() == "N":
                 display_message("Returning to main menu")
                 main()
         else:
@@ -173,10 +173,10 @@ def add_another_student():
     """
     while True:
         next_step = input("Do you want to add another new student? (Y/N) ")
-        if next_step == "Y" or next_step == "y":
+        if next_step.upper() == "Y":
             display_message("Restarting add new student")
             add_new_student()
-        elif next_step == "N" or next_step == "n":
+        elif next_step.upper() == "N":
             display_message("Returning to main menu")
             main()
         else:
@@ -270,13 +270,13 @@ def search_for_student():
         else:
             display_message("There is currently no student with that number.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
 
-    search_again = input("Would you like to search for another student? (Y/N) ")
-    if search_again == "Y" or search_again == "y":
-        display_message("Restarting add new student")
-        search_for_student()
-    elif search_again == "N" or search_again == "n":
-        display_message("Returning to main menu")
-        main()
+        search_again = input("Would you like to search for another student? (Y/N) ")
+        if search_again.upper() == "Y":
+            display_message("Restarting Student Search")
+            search_for_student()
+        elif search_again.upper() == "N":
+            display_message("Returning to main menu")
+            main()
 
 def delete_student():
     """
@@ -314,16 +314,16 @@ def confirm_student_removal():
     the user has not made a mistake
     """
     confirmation = input("Are you sure you want to delete this student? (Y/N)\nThis action cannot be undone. ")
-    if confirmation == "Y" or confirmation == "y":
+    if confirmation.upper() == "Y":
         display_message("Removing student from database")
         display_message("Student has been removed from database")
         next_step = input("Do you wish to remove another student? (Y/N) ")
-        if next_step == "Y" or next_step == "y":
+        if next_step.upper() == "Y":
             delete_student()
-        elif next_step == "N" or next_step == "n":
+        elif next_step.upper() == "N":
             display_message("Returning to main menu")
             main() 
-    elif confirmation == "N" or confirmation == "n":
+    elif confirmation.upper() == "N":
         display_message("Returning to main menu")
         main()
     else:
@@ -347,7 +347,7 @@ def remove_all_students():
     """
     while True:
         confirmation = input("Are you sure you want to clear the database?\nThis action cannot be undone. (Y/N) ")
-        if confirmation == "Y" or confirmation == "y":
+        if confirmation.upper() == "Y":
             STUDENTS.clear()
             headings = ("Family Name","First Name","Nationality","Age","Test Results","Level","Start Date","End Date","Student Number")
             STUDENTS.append_row(headings)
@@ -355,7 +355,7 @@ def remove_all_students():
             display_message("Removing students from database")
             display_message("All students have been removed from the database")
             display_message("Returning to main menu")
-        elif confirmation == "N" or confirmation == "n":
+        elif confirmation.upper() == "N":
             display_message("Returning to main menu")
             main()
         else:
