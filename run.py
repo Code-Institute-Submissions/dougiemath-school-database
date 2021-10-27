@@ -265,29 +265,17 @@ def search_for_student():
             print("------")
         elif number == "0":
             main()
-        elif number.isalpha():#
-            print("------")
-            print("")
-            print("Invalid input.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
-            print("")
-            print("------")
+        elif number.isalpha():
+            display_message("Invalid input.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
         else:
-            print("------")
-            print("")
-            print("Invalid input.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
-            print("")
-            print("------")
+            display_message("There is currently no student with that number.  Please enter a valid student number.\n Please type '0' to return tot he main menu.")
 
     search_again = input("Would you like to search for another student? (Y/N) ")
     if search_again == "Y" or search_again == "y":
-        print("")
-        print("Restarting add new student")
-        print("")
+        display_message("Restarting add new student")
         search_for_student()
     elif search_again == "N" or search_again == "n":
-        print("")
-        print("Returning to main menu")
-        print("")
+        display_message("Returning to main menu")
         main()
 
 def delete_student():
@@ -310,11 +298,12 @@ def delete_student():
                 confirm_student_removal()
                 STUDENTS.delete_rows(rownum)
             elif number.isalpha():
-                print("Invalid input.  Please enter a valid student number.\nEnter '0' to return to the main menu. ")
+                display_message("Invalid input.  Please enter a valid student number.\nEnter '0' to return to the main menu. ")
             elif int(number) == 0:
+                display_message("Returning to main menu.")
                 main()
             else:
-                print("Invalid input.  Please enter a valid student number.\nEnter '0' to return to the main menu. ")
+                display_message("Invalid input - there is no student with that number.  Please enter a valid student number.\nEnter '0' to return to the main menu. ")
             
         except Exception():
             pass
@@ -326,26 +315,19 @@ def confirm_student_removal():
     """
     confirmation = input("Are you sure you want to delete this student? (Y/N)\nThis action cannot be undone. ")
     if confirmation == "Y" or confirmation == "y":
-        print("------")
-        print("")
-        print("Removing student from database")
-        print("")
-        print("------")
-        print("")
-        print("Student has been removed from database")
-        print("")
-        print("------")
+        display_message("Removing student from database")
+        display_message("Student has been removed from database")
+        next_step = input("Do you wish to remove another student? (Y/N) ")
+        if next_step == "Y" or next_step == "y":
+            delete_student()
+        elif next_step == "N" or next_step == "n":
+            display_message("Returning to main menu")
+            main() 
     elif confirmation == "N" or confirmation == "n":
-        print("------")
-        print("")
-        print("Returning to main menu")
-        print("")
-        print("------")
+        display_message("Returning to main menu")
         main()
     else:
-        print("")
-        print("Invlaid Input.  Please choose Y or N")
-        print("")
+        display_message("Invlaid Input.  Please choose Y or N")
         confirm_student_removal()
 
 def exit_program():
@@ -369,24 +351,15 @@ def remove_all_students():
             STUDENTS.clear()
             headings = ("Family Name","First Name","Nationality","Age","Test Results","Level","Start Date","End Date","Student Number")
             STUDENTS.append_row(headings)
-            print("")
-            print("Accessing database")
-            print("")
-            print("Removing students from database")
-            print("")
-            print("All students have been removed from the database")
-            print("")
-            print("Returning to main menu")
-            print("")
+            display_message("Accessing database")
+            display_message("Removing students from database")
+            display_message("All students have been removed from the database")
+            display_message("Returning to main menu")
         elif confirmation == "N" or confirmation == "n":
-            print("")
-            print("Returning to main menu")
-            print("")
+            display_message("Returning to main menu")
             main()
         else:
-            print("")
-            print("Invlaid Input.  Please choose Y or N")
-            print("")
+            display_message("Invlaid Input.  Please choose Y or N")
 
 def display_message(message):
     print("")
