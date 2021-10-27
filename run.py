@@ -114,6 +114,7 @@ def add_new_student():
 
         student_details.append(student_level)
         break
+   
     # function for adding student's start and end dates
     while True:
         try:
@@ -124,6 +125,8 @@ def add_new_student():
                 student_details.append(start_date)
                 student_details.append(end_date)
                 break
+            elif validate_date(start_date) and validate_date(end_date) and end_date <= start_date:
+                display_message("The start date is later than the end date.  Please enter the dates again.")
                
         except Exception:
             pass
@@ -373,4 +376,3 @@ def display_message(message):
     print("")
 
 main()
-
