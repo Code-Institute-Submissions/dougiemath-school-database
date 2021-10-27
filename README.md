@@ -25,6 +25,8 @@ As the owner of this program, I wanted to:
 * remove all students
 
 ### Structure
+![Flowchart Showing Structure of program](assets/images/flowchart.png)
+
 
 ## Features
 ### Existing Features
