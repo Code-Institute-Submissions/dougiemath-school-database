@@ -60,7 +60,6 @@ def add_new_student():
     # function for adding student's surname
     while True:
         family_name = input("Please enter the student's family name: ")
-        validate_data(family_name)
        
         if validate_data(family_name):
             student_details.append(family_name)
@@ -68,7 +67,6 @@ def add_new_student():
     # function for adding student's first name
     while True:
         first_name = input("Please enter the student's first name: ")
-        validate_data(first_name)
        
         if validate_data(first_name):
             student_details.append(first_name)
@@ -76,7 +74,6 @@ def add_new_student():
     # function for adding student's nationality
     while True:
         nationality = input("Please enter the student's nationality: ")
-        validate_data(nationality)
        
         if validate_data(nationality):
             student_details.append(nationality)
@@ -84,7 +81,6 @@ def add_new_student():
     # function for adding student's age
     while True:
         age = input("Please enter the student's age: ")
-        validate_numeric_data(age)
        
         if validate_numeric_data(age):
             student_details.append(int(age))
@@ -93,7 +89,7 @@ def add_new_student():
     while True:
         test_results = input("Please enter the student's test results (1-30): ")
         validate_numeric_data(test_results)
-
+        
         if int(test_results) >30:
             print("please enter a score from 1-30")
             continue
@@ -122,16 +118,12 @@ def add_new_student():
     while True:
         try:
             start_date = input("Please enter the start date (use only DD-MM-YYYY): ")
-            validate_date(start_date)
             end_date = input("Please enter the end date (use only DD-MM-YYYY): ")
-            validate_date(end_date) 
         
             if validate_date(start_date) and validate_date(end_date) and end_date > start_date:
                 student_details.append(start_date)
                 student_details.append(end_date)
                 break
-            #else:
-            #   print("Nope")
                
         except Exception:
             pass
@@ -156,23 +148,20 @@ def add_new_student():
         confirmation = input("Please confirm that you wish to add this student to the database? (Y/N) ")
     
         if confirmation == "Y" or confirmation == "y":
-            print("Accessing database..........")
-            print("Updating database..........")
+            display_message("Accessing database..........")
+            display_message("Updating database..........")
             SHEET.worksheet('studentdata').append_row(student_details)
-            print("..........")
-            print("Student added succesfully!")
+            display_message("Student added succesfully!")
             
             add_another_student()
         
         elif confirmation == "N" or confirmation == "n":
-            print("oh....")
             next_step = input("Do you want to add another new student? (Y/N) ")
             if next_step == "Y" or next_step == "y":
-                print("..........")
-                print("Restarting add new student")
-                print("..........")
+                display_message("Restarting add new student")
                 add_new_student()
             elif next_step == "N" or next_step == "n":
+                display_message("Returning to main menu")
                 main()
         else:
             print("Please enter 'Y' or 'N'")
@@ -185,14 +174,10 @@ def add_another_student():
     while True:
         next_step = input("Do you want to add another new student? (Y/N) ")
         if next_step == "Y" or next_step == "y":
-            print("..........")
-            print("Restarting add new student")
-            print("..........")
+            display_message("Restarting add new student")
             add_new_student()
         elif next_step == "N" or next_step == "n":
-            print("..........")
-            print("Returning to main menu")
-            print("..........")
+            display_message("Returning to main menu")
             main()
         else:
             print("Please enter 'Y' or 'N'")
@@ -203,15 +188,9 @@ def validate_data(values):
     """
     try:
         if values.isalpha() == False:
-            raise ValueError(
-                    "please make sure you only use letters.  Special characters are not allowed "
-                )
+            raise ValueError()
     except ValueError as e:
-        print("------")
-        print("")
-        print(f"Invalid data: {e}, please try again.\n")
-        print("")
-        print("------")
+        display_message("Please make sure you only use letters.  \nSpecial characters and numbers are not allowed")
         return False
    
     return True
@@ -222,15 +201,9 @@ def validate_numeric_data(values):
     """
     try:
         if values.isnumeric() == False:
-            raise ValueError(
-                    "please make sure you only use numbers"
-                )
+            raise ValueError()
     except ValueError as e:
-        print("------")
-        print("")
-        print(f"Invalid data: {e}, please try again.\n")
-        print("")
-        print("------")
+        display_message("Please enter a number.  \nSpecial characters and letters are not allowed.")
         return False
     
     return True
@@ -245,11 +218,8 @@ def validate_date(values):
                     "please make sure you only use numbers."
                 )
     except ValueError as e:
-        print("------")
-        print("")
-        print(f"Invalid data: {e}, please try again.\n")
-        print("")
-        print("------")
+        display_message("Please enter the date as DD-MM-YYYY. \nOther date formats will not be accepted by the program.")
+
         return False
     
     return True
@@ -417,6 +387,15 @@ def remove_all_students():
             print("")
             print("Invlaid Input.  Please choose Y or N")
             print("")
+
+def display_message(message):
+    print("")
+    print("----------")
+    print("")
+    print(message)
+    print("")
+    print("----------")
+    print("")
 
 main()
 
