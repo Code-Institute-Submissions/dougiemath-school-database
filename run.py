@@ -389,6 +389,7 @@ def remove_all_students():
             display_message("Removing students from database")
             display_message("All students have been removed from the database")
             display_message("Returning to main menu")
+            main()
         elif confirmation.upper() == "N":
             display_message("Returning to main menu")
             main()
