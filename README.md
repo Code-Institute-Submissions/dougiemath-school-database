@@ -149,6 +149,37 @@ In the 'Add New Student' section the user has can enter a 'Start Date' and an 'E
 
 ## Deployment
 
+This project was deployed in heroku and can be found: https://dougiemath-school-database.herokuapp.com/
+
+### Steps to deployment
+
+* Sign up and log in to [heroku.com](https://www.heroku.com/)
+* Select 'Create New App'
+* Name the project (must be a unique name), choose your region and click 'Create'
+* Navigate to the settings tab (must be done before deploying code)
+* Add 'Convig VAR'
+    * This must include the details in the creds.json file
+    * in the 'KEY' field, type 'CREDS'
+    * in the 'VALUE' field, paste the entire contents of the creds.json file
+* As I used a template provided by the Code Institute, I need to create a second VAR.  This is not necessary if you do not use their template.
+    * In the 'KEY' field, type 'PORT'
+    * in the 'VALUE' field, type '8000'
+* Click 'Add Buildpack'
+    * Select 'Python' and save changes
+* Click 'Add Buildpack'
+    * Select 'Node JS' and save changes
+* Navigate to the Deploy tab
+* Select GitHub as deployment method and confirm that you want to connect to your repository
+* Enter the name of the repository and click 'connect'
+* Once complete, choose the deployment method.  In the first instance, I selected 'Manual Deploys' and then selected 'Automatic Deploys'.  This will create a deployed link which displays a mock terminal. 
+
+
 ## Credits
 
+All code was written by the developer.
+
 ## Acknowledgements
+
+My mentor for the invaluable help and advice.
+
+The Code Institute Slack community.
