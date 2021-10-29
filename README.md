@@ -25,16 +25,22 @@ As the owner of this program, I wanted to:
 * remove all students
 
 ### Structure
+
 ![Flowchart Showing Structure of program](assets/images/flowchart.png)
 
 
 ## Features
 ### Existing Features
+
 ### Features Left to Implement
 
 ## Technologies Used
 
 ## Testing
+PEP8 Validation - http://pep8online.com/
+
+![PEP8 Validation Results](assets/images/pep8_validation_results.jpg)
+
 ### Personal Testing
 ### Validation
 
