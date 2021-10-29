@@ -193,7 +193,7 @@ def validate_data(values):
     Function to validate that the input data is letters
     """
     try:
-        if values.isalpha() == False:
+        if values.isalpha() is False:
             raise ValueError()
     except ValueError as e:
         display_message("Please make sure you only use letters."
@@ -208,7 +208,7 @@ def validate_numeric_data(values):
     Function to validate that the input data is numeric
     """
     try:
-        if values.isnumeric() == False:
+        if values.isnumeric() is False:
             raise ValueError()
         elif values == "0":
             raise ValueError()
@@ -225,7 +225,7 @@ def validate_date(values):
     Function to validate the date format as DD-MM-YYYY
     """
     try:
-        if datetime.datetime.strptime(values, '%d-%m-%Y') == False:
+        if datetime.datetime.strptime(values, '%d-%m-%Y') is False:
             raise ValueError(
                     "please make sure you only use numbers."
                 )
