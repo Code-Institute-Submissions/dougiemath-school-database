@@ -15,6 +15,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('SchoolDatabase')
 STUDENTS = SHEET.worksheet("studentdata")
 
+
 def main():
     """
     Function to display main menu
@@ -48,7 +49,6 @@ def main():
             print("Invalid choice")
             print("Please enter a number from 1-6.")
             pass
-    
 
 
 def add_new_student():
@@ -60,35 +60,32 @@ def add_new_student():
     # function for adding student's surname
     while True:
         family_name = input("Please enter the student's family name: ")
-       
+
         if validate_data(family_name):
             student_details.append(family_name)
             break
     # function for adding student's first name
     while True:
         first_name = input("Please enter the student's first name: ")
-       
+
         if validate_data(first_name):
             student_details.append(first_name)
             break
     # function for adding student's nationality
     while True:
         nationality = input("Please enter the student's nationality: ")
-       
         if validate_data(nationality):
             student_details.append(nationality)
             break
     # function for adding student's age
     while True:
         age = input("Please enter the student's age: ")
-       
         if validate_numeric_data(age):
             student_details.append(int(age))
             break
     # function for adding student's test results
     while True:
         test_results = input("Please enter the student's test results (1-30): ")
-        
         if validate_numeric_data(test_results) and int(test_results) <= 30 and int(test_results) > 0:
             student_details.append(int(test_results))
             break
@@ -111,20 +108,20 @@ def add_new_student():
 
         student_details.append(student_level)
         break
-   
+
     # function for adding student's start and end dates
     while True:
         try:
             start_date = input("Please enter the start date (use only DD-MM-YYYY): ")
             end_date = input("Please enter the end date (use only DD-MM-YYYY): ")
-        
+
             if validate_date(start_date) and validate_date(end_date) and end_date > start_date:
                 student_details.append(start_date)
                 student_details.append(end_date)
                 break
             elif validate_date(start_date) and validate_date(end_date) and end_date <= start_date:
                 display_message("The start date is later than the end date.  Please enter the dates again.")
-               
+
         except Exception:
             pass
 
@@ -137,24 +134,23 @@ def add_new_student():
 
     # function for confirming student to be added
     while True:
-
-        headings = STUDENTS.row_values(1) 
+        headings = STUDENTS.row_values(1)
         summary = dict(zip(headings, student_details))
         print("------")
         for x, y in summary.items():
             print(x, ": ", y)
         print("------")
-        
+
         confirmation = input("Please confirm that you wish to add this student to the database? (Y/N) ")
-    
+
         if confirmation.upper() == "Y":
             display_message("Accessing database..........")
             display_message("Updating database..........")
             SHEET.worksheet('studentdata').append_row(student_details)
             display_message("Student added succesfully!")
-            
+
             add_another_student()
-        
+
         elif confirmation.upper() == "N":
             next_step = input("Do you want to add another new student? (Y/N) ")
             if next_step.upper() == "Y":
@@ -165,6 +161,7 @@ def add_new_student():
                 main()
         else:
             print("Please enter 'Y' or 'N'")
+
 
 def add_another_student():
     """
@@ -182,6 +179,7 @@ def add_another_student():
         else:
             print("Please enter 'Y' or 'N'")
 
+
 def validate_data(values):
     """
     Function to validate that the input data is letters
@@ -192,8 +190,9 @@ def validate_data(values):
     except ValueError as e:
         display_message("Please make sure you only use letters.  \nSpecial characters and numbers are not allowed")
         return False
-   
+
     return True
+
 
 def validate_numeric_data(values):
     """
@@ -207,8 +206,9 @@ def validate_numeric_data(values):
     except ValueError as e:
         display_message("Please enter a number greater than 0.  \nSpecial characters and letters are not allowed.")
         return False
-    
+
     return True
+
 
 def validate_date(values):
     """
@@ -223,8 +223,9 @@ def validate_date(values):
         display_message("Please enter the date as DD-MM-YYYY. \nOther date formats will not be accepted by the program.")
 
         return False
-    
+
     return True
+
 
 def display_all_students():
     """
@@ -236,6 +237,7 @@ def display_all_students():
             print_all_students(student)
     else:
         print("None")
+
 
 def print_all_students(existing):
     """
@@ -249,6 +251,7 @@ def print_all_students(existing):
     return student
     main()
 
+
 def search_for_student():
     """
     Function to search by student's ID number
@@ -259,7 +262,7 @@ def search_for_student():
         if number in test:
             rownum = test.index(number) + 1
             row = STUDENTS.row_values(rownum)
-            headings = STUDENTS.row_values(1) 
+            headings = STUDENTS.row_values(1)
             search_results = dict(zip(headings, row))
             print("")
             for x, y in search_results.items():
@@ -270,7 +273,7 @@ def search_for_student():
         else:
             display_message("There is currently no student with that number.  Please enter a valid student number.\n Please type '0' to return to the main menu.")
             pass
-        
+
         search_again = input("Would you like to search for another student? (Y/N) ")
         if search_again.upper() == "Y":
             display_message("Restarting Student Search")
@@ -278,6 +281,7 @@ def search_for_student():
         elif search_again.upper() == "N":
             display_message("Returning to main menu")
             main()
+
 
 def delete_student():
     """
@@ -290,7 +294,7 @@ def delete_student():
             if number in test:
                 rownum = test.index(number) + 1
                 row = STUDENTS.row_values(rownum)
-                headings = STUDENTS.row_values(1) 
+                headings = STUDENTS.row_values(1)
                 search_results = dict(zip(headings, row))
                 print("")
                 for x, y in search_results.items():
@@ -305,9 +309,10 @@ def delete_student():
                 main()
             else:
                 display_message("Invalid input - there is no student with that number.  Please enter a valid student number.\nEnter '0' to return to the main menu. ")
-            
+
         except Exception():
             pass
+
 
 def confirm_student_removal():
     """
@@ -323,13 +328,14 @@ def confirm_student_removal():
             delete_student()
         elif next_step.upper() == "N":
             display_message("Returning to main menu")
-            main() 
+            main()
     elif confirmation.upper() == "N":
         display_message("Returning to main menu")
         main()
     else:
         display_message("Invlaid Input.  Please choose Y or N")
         confirm_student_removal()
+
 
 def exit_program():
     """
@@ -338,9 +344,10 @@ def exit_program():
     print("""
                 THANK YOU FOR USING THIS PROGRAM
                         HAVE A NICE DAY
-                            
+
                         """)
     exit()
+
 
 def remove_all_students():
     """
@@ -350,7 +357,7 @@ def remove_all_students():
         confirmation = input("Are you sure you want to clear the database?\nThis action cannot be undone. (Y/N) ")
         if confirmation.upper() == "Y":
             STUDENTS.clear()
-            headings = ("Family Name","First Name","Nationality","Age","Test Results","Level","Start Date","End Date","Student Number")
+            headings = ("Family Name", "First Name", "Nationality", "Age", "Test Results", "Level", "Start Date", "End Date", "Student Number")
             STUDENTS.append_row(headings)
             display_message("Accessing database")
             display_message("Removing students from database")
@@ -361,6 +368,7 @@ def remove_all_students():
             main()
         else:
             display_message("Invlaid Input.  Please choose Y or N")
+
 
 def display_message(message):
     print("")
