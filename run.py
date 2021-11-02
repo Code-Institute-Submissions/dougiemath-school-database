@@ -115,7 +115,7 @@ def add_new_student():
     while True:
         try:
             start_date = input("Please enter the start date"
-                                "(use only DD-MM-YYYY): ")
+                               "(use only DD-MM-YYYY): ")
             end_date = input("Please enter the end date "
                              "(use only DD-MM-YYYY): ")
 
@@ -124,7 +124,7 @@ def add_new_student():
                 student_details.append(end_date)
                 break
                 display_message("The start date is later than the end date."
-                                "  Please enter the dates again.")
+                                " Please enter the dates again.")
 
         except Exception:
             pass
@@ -226,7 +226,7 @@ def validate_date(start_date, end_date):
             raise ValueError()
         elif datetime.datetime.strptime(end_date, '%d-%m-%Y') is False:
             raise ValueError()
-        try: 
+        try:
             if start_date > end_date:
                 raise ValueError()
         except ValueError as e:
