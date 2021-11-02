@@ -54,6 +54,8 @@ As the owner of this program, I wanted to:
 
 Users have 6 options to choose from.  The menu was centred to make it more intuitive to users.  On this screen the user has access to any/all of the core functions in the program.
 
+*** 
+
 #### Add New Student
 
 ![Add New Student](assets/images/school_database_screenshots/add_new_student.jpg)
@@ -74,6 +76,8 @@ The spreadsheet will automatically be sorted so by 'Family Name' - this will all
 
 Users will also be able to add another new student without needing to return to the main menu.
 
+*** 
+
 #### Search for Student
 
 ![Search](assets/images/school_database_screenshots/search_for_student.jpg)
@@ -82,6 +86,8 @@ Users will be able to search for students by their ID number.  This was designed
 
 Users will be able to search for other students without returning to the main menu.
 
+*** 
+
 #### Display all students
 
 ![Display all students](assets/images/school_database_screenshots/display_all_students.jpg)
@@ -89,6 +95,8 @@ Users will be able to search for other students without returning to the main me
 Users will be able to see all of the students on the database, and all of the information stored on each one.  
 
 This is to emulate a student losing their ID card and requesting information.  The output will display all students alphabetically and the user can find (and maybe in the futre 'print') their detials.
+
+*** 
 
 #### Delete Student
 
@@ -101,6 +109,8 @@ Users will be able to remove single students.  The search is similar to the 'Sea
 Users will be given a confirmation screen to ensure that they have the correct student.
 
 Users will be able to delete other students without returning to the main menu.
+
+*** 
 
 #### Reset Database
 
