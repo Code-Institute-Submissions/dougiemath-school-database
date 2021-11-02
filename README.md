@@ -132,6 +132,9 @@ PEP8 Validation - http://pep8online.com/
 
 During development, there were many bugs that I faced but fixed by inserting print statements throughout.  However the following bugs required further research and/or help from my mentor.
 
+* When inputting the student's start and end dates, if the student used an incorrect format the error was thrown twice.
+    * The date_validation function was reworked to use two paramters and an IF statment to check both the format of the input and whether the start date comes before the end date
+
 * When adding a new student, it was possible to set the student's age to zero.
     * An addition to the 'IF' statement was added to ensure that '0' would be raised as an error
 
@@ -145,7 +148,7 @@ During development, there were many bugs that I faced but fixed by inserting pri
     * Fixed accordingly
 
 ### Bugs remaining
-In the 'Add New Student' section the user has can enter a 'Start Date' and an 'End Date' using the format 'DD-MM-YYYY'.  If the user uses a different input (such as DD/MM/YYYY) an error will be raised.  However, if the user uses the wrong format for either the 'Start Date', 'End Date' or both the error is only raised AFTER the 'End Date' is entered.
+At time of deployment, there are no known bugs.
 
 ## Deployment
 
