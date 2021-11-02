@@ -36,7 +36,7 @@ As the owner of this program, I wanted to:
 
 ![Flowchart Showing Structure of program](assets/images/flowchart.png)
 
-#### Spreadsheet Structure
+#### Database Structure
 
 | Family Name | First Name | Nationality | Age | Test result | Level | Start Date | End Date   | Student Number |
 |-------------|------------|-------------|-----|-------------|-------|------------|------------|----------------|
