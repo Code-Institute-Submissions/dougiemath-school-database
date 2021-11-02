@@ -119,13 +119,10 @@ def add_new_student():
             end_date = input("Please enter the end date "
                              "(use only DD-MM-YYYY): ")
 
-            if validate_date(start_date) and validate_date(end_date)\
-               and end_date > start_date:
+            if validate_date(start_date, end_date):
                 student_details.append(start_date)
                 student_details.append(end_date)
                 break
-            elif (validate_date(start_date) and validate_date(end_date) and
-                    end_date <= start_date):
                 display_message("The start date is later than the end date."
                                 "  Please enter the dates again.")
 
@@ -220,15 +217,23 @@ def validate_numeric_data(values):
     return True
 
 
-def validate_date(values):
+def validate_date(start_date, end_date):
     """
     Function to validate the date format as DD-MM-YYYY
     """
     try:
-        if datetime.datetime.strptime(values, '%d-%m-%Y') is False:
-            raise ValueError(
-                    "please make sure you only use numbers."
-                )
+        if datetime.datetime.strptime(start_date, '%d-%m-%Y') is False:
+            raise ValueError()
+        elif datetime.datetime.strptime(end_date, '%d-%m-%Y') is False:
+            raise ValueError()
+        try: 
+            if start_date > end_date:
+                raise ValueError()
+        except ValueError as e:
+            display_message("Your start date is later than your end date. "
+                            "\nPlease enter the dates again.")
+            return False
+
     except ValueError as e:
         display_message("Please enter the date as DD-MM-YYYY."
                         " \nOther date formats will not be accepted"
