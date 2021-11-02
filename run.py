@@ -155,8 +155,8 @@ def add_new_student():
             display_message("Accessing database..........")
             display_message("Updating database..........")
             SHEET.worksheet('studentdata').append_row(student_details)
+            STUDENTS.sort((1, 'asc'))
             display_message("Student added succesfully!")
-
             add_another_student()
 
         elif confirmation.upper() == "N":
