@@ -271,9 +271,9 @@ def search_for_student():
     while True:
         number = input("Please enter the Student ID number"
                        " \n(or input 0 to return to the main menu): ")
-        test = STUDENTS.col_values(9)
-        if number in test:
-            rownum = test.index(number) + 1
+        student = STUDENTS.col_values(9)
+        if number in student:
+            rownum = student.index(number) + 1
             row = STUDENTS.row_values(rownum)
             headings = STUDENTS.row_values(1)
             search_results = dict(zip(headings, row))
@@ -307,9 +307,9 @@ def delete_student():
         try:
             number = input("Please enter the Student ID number.\n"
                            "Enter '0' to return to the main menu. ")
-            test = STUDENTS.col_values(9)
-            if number in test:
-                rownum = test.index(number) + 1
+            student = STUDENTS.col_values(9)
+            if number in student:
+                rownum = student.index(number) + 1
                 row = STUDENTS.row_values(rownum)
                 headings = STUDENTS.row_values(1)
                 search_results = dict(zip(headings, row))
@@ -356,7 +356,7 @@ def confirm_student_removal():
         display_message("Returning to main menu")
         main()
     else:
-        display_message("Invlaid Input.  Please choose Y or N")
+        display_message("Invalid Input.  Please choose Y or N")
         confirm_student_removal()
 
 
@@ -394,7 +394,7 @@ def remove_all_students():
             display_message("Returning to main menu")
             main()
         else:
-            display_message("Invlaid Input.  Please choose Y or N")
+            display_message("Invalid Input.  Please choose Y or N")
 
 
 def display_message(message):
