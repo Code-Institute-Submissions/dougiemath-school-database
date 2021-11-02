@@ -1,7 +1,7 @@
 # Student Database
 
 ## Project Description
-Students who join an 'English as a Second Language (ESL)' school will do a test on arrival to ascertain the student's level of English, and thus be placed in the correct classroom.  This project is to enable langauge schools to enter a new student onto a spreadsheet, enter the student's test results, calculate the student's level and allocate the student a unique student number.  Specific students are searchable (by student ID) and removable.
+Students who join an 'English as a Second Language (ESL)' school will do a test on arrival to ascertain the student's level of English, and thus be placed in the correct classroom.  This project is to enable language schools to enter a new student onto a spreadsheet, enter the student's test results, calculate the student's level and allocate the student a unique student number.  Specific students are searchable (by student ID) and removable.
 
 ## UX Design
 
@@ -49,7 +49,7 @@ Users have 6 options to choose from.  The menu was centred to make it eye-catchi
 
 ![Add New Student](assets/images/school_database_screenshots/add_new_student.jpg)
 
-Users can enter a new student's details: family name, first name, nationality, age, test result, course start date, and course end date.  (Nationality was include as students in a langauge school are normally divided by language in order to force the student to use the target language more than their native)
+Users can enter a new student's details: family name, first name, nationality, age, test result, course start date, and course end date.  (Nationality was include as students in a language school are normally divided by language in order to force the student to use the target language more than their native)
 
 ![Calculate Level and Student ID](assets/images/school_database_screenshots/add_new_student_calculate_level_and_ID.jpg)
 
@@ -100,7 +100,7 @@ Users will be able to clear the entire spreadsheet.
 Users will be given a confirmation screen to ensure that they really want to do this.
 
 ### Features Left to Implement
-In order to make this program more user friendly to the target audience (shcool administration dept), the ability to export the database (either as a whole or for individual student) to a printable format - such as a PDF.  
+In order to make this program more user friendly to the target audience (school administration dept), the ability to export the database (either as a whole or for individual student) to a printable format - such as a PDF.  
 
 ## Technologies Used
 
@@ -133,7 +133,7 @@ PEP8 Validation - http://pep8online.com/
 During development, there were many bugs that I faced but fixed by inserting print statements throughout.  However the following bugs required further research and/or help from my mentor.
 
 * When inputting the student's start and end dates, if the student used an incorrect format the error was thrown twice.
-    * The date_validation function was reworked to use two paramters and an IF statment to check both the format of the input and whether the start date comes before the end date
+    * The date_validation function was reworked to use two parameters and an IF statement to check both the format of the input and whether the start date comes before the end date
 
 * When adding a new student, it was possible to set the student's age to zero.
     * An addition to the 'IF' statement was added to ensure that '0' would be raised as an error
