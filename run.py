@@ -288,6 +288,9 @@ def search_for_student():
             print("------")
         elif number == "0":
             main()
+        elif not number:
+            display_message("No input detected, please enter a number.")
+            search_for_student()
         else:
             display_message("There is currently no student with that number."
                             "  Please enter a valid student number.\n"
@@ -328,6 +331,9 @@ def delete_student():
                 display_message("Invalid input.  Please enter a valid student"
                                 " number. \nEnter '0' to return to the"
                                 " main menu. ")
+            elif not number:
+                display_message("No input detected, please enter a number.")
+                delete_student()
             elif int(number) == 0:
                 display_message("Returning to main menu.")
                 main()
