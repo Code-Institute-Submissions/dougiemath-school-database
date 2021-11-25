@@ -156,6 +156,12 @@ PEP8 Validation - http://pep8online.com/
 
 During development, there were many bugs that I faced but fixed by inserting print statements throughout.  However the following bugs required further research and/or help from my mentor.
 
+* When searching a student if the user gives empty input the program does not raise error.
+    * added condition to IF statement to check for user input and to display error message and restart function if user did not input anything.
+
+* When the client inputs empty input while deleting a student, the program terminates.
+    * added condition to IF statement to check for user input and to display error message and restart function if user did not input anything.
+
 * When inputting the student's start and end dates, if the student used an incorrect format the error was thrown twice.
     * The date_validation function was reworked to use two parameters and an IF statement to check both the format of the input and whether the start date comes before the end date
 
