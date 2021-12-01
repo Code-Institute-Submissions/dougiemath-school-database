@@ -358,7 +358,9 @@ def confirm_student_removal():
     the user has not made a mistake
     """
     confirmation = input("Are you sure you want to delete this student?"
-                         " (Y/N)\nThis action cannot be undone. ")
+                         " (Y/N)\nThis action cannot be undone. "
+                         "\n"
+                         "\nSelecting 'N' will return you to the main menu.")
     if confirmation.upper() == "Y":
         display_message("Removing student from database")
         display_message("Student has been removed from database")
