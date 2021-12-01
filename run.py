@@ -157,15 +157,18 @@ def add_new_student():
             add_another_student()
 
         elif confirmation.upper() == "N":
-            next_step = input("Do you want to add another new student? (Y/N) ")
-            if next_step.upper() == "Y":
-                display_message("Restarting add new student")
-                add_new_student()
-            elif next_step.upper() == "N":
-                display_message("Returning to main menu")
-                main()
+            while True:
+                next_step = input("Do you want to add another new student? (Y/N) ")
+                if next_step.upper() == "Y":
+                    display_message("Restarting add new student")
+                    add_new_student()
+                elif next_step.upper() == "N":
+                    display_message("Returning to main menu")
+                    main()
+                else:
+                    display_message("Please enter 'Y' or 'N'")
         else:
-            print("Please enter 'Y' or 'N'")
+            display_message("Please enter 'Y' or 'N'")
 
 
 def add_another_student():
@@ -182,7 +185,7 @@ def add_another_student():
             display_message("Returning to main menu")
             main()
         else:
-            print("Please enter 'Y' or 'N'")
+            display_message("Please enter 'Y' or 'N'")
 
 
 def validate_data(values):
