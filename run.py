@@ -158,7 +158,8 @@ def add_new_student():
 
         elif confirmation.upper() == "N":
             while True:
-                next_step = input("Do you want to add another new student? (Y/N) ")
+                next_step = input("Do you want to add another "
+                                  "new student? (Y/N) ")
                 if next_step.upper() == "Y":
                     display_message("Restarting add new student")
                     add_new_student()
@@ -301,7 +302,7 @@ def search_for_student():
             pass
         while True:
             search_again = input("Would you like to search for"
-                             " another student? (Y/N) ")
+                                 " another student? (Y/N) ")
             if search_again.upper() == "Y":
                 display_message("Restarting Student Search")
                 search_for_student()
