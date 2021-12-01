@@ -295,6 +295,9 @@ def search_for_student():
         elif not number:
             display_message("No input detected, please enter a number.")
             search_for_student()
+        elif number.isnumeric() is False:
+            display_message("Invlaid input.  Please use numbers only.")
+            search_for_student()
         else:
             display_message("There is currently no student with that number."
                             "  Please enter a valid student number.\n"
