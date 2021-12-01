@@ -299,15 +299,17 @@ def search_for_student():
                             "  Please enter a valid student number.\n"
                             " Please type '0' to return to the main menu.")
             pass
-
-        search_again = input("Would you like to search for"
+        while True:
+            search_again = input("Would you like to search for"
                              " another student? (Y/N) ")
-        if search_again.upper() == "Y":
-            display_message("Restarting Student Search")
-            search_for_student()
-        elif search_again.upper() == "N":
-            display_message("Returning to main menu")
-            main()
+            if search_again.upper() == "Y":
+                display_message("Restarting Student Search")
+                search_for_student()
+            elif search_again.upper() == "N":
+                display_message("Returning to main menu")
+                main()
+            else:
+                display_message("Please enter Y or N")
 
 
 def delete_student():
